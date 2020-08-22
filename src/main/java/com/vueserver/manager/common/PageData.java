@@ -13,5 +13,13 @@ import java.util.List;
 public class PageData {
 
     private Object items;
-    private Integer total;
+    private Long total;
+
+    public PageData(Object items, Long total) {
+        this.items = items;
+        this.total = total;
+    }
+
+    public PageData() {
+    }
 }

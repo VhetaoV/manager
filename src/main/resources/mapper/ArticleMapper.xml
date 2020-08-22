@@ -1,83 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.vueserver.manager.dao.UserDao">
-  <resultMap id="BaseResultMap" type="com.vueserver.manager.entity.User">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+<mapper namespace="com.vueserver.manager.dao.ArticleDao">
+  <resultMap id="BaseResultMap" type="com.vueserver.manager.entity.Article">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="readings" jdbcType="INTEGER" property="readings" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
-  <sql id="Base_Column_List">
-    id, user_name, user_password
-  </sql>
-
-
-  <select id="findUser" parameterType="com.vueserver.manager.entity.User" resultMap="BaseResultMap">
-     select * from t_user where user_name = #{userName} and  user_password = #{userPassword}
-  </select>
-
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_user
-    where id = #{id,jdbcType=INTEGER}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from article
+    where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.vueserver.manager.entity.User">
-    insert into t_user (id, user_name, user_password
-      )
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.vueserver.manager.entity.Article">
+    insert into article (id, title, author, 
+      createDate, readings, `status`, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{readings,jdbcType=INTEGER}, #{status,jdbcType=BIT}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.vueserver.manager.entity.User">
-    update t_user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      user_password = #{userPassword,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.vueserver.manager.entity.Article">
+    update article
+    set title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      createDate = #{createDate,jdbcType=TIMESTAMP},
+      readings = #{readings,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=BIT},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from t_user
-    where id = #{id,jdbcType=INTEGER}
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, title, author, createDate, readings, `status`, content
+    from article
+    where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, user_name, user_password
-    from t_user
+    select id, title, author, createDate, readings, `status`, content
+    from article
   </select>
-
-
-  <insert id="insertSelective" parameterType="com.vueserver.manager.entity.User">
-    insert into t_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="userName != null">
-        user_name,
-      </if>
-      <if test="userPassword != null">
-        user_password,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="userPassword != null">
-        #{userPassword,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.vueserver.manager.entity.User">
-    update t_user
-    <set>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="userPassword != null">
-        user_password = #{userPassword,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
 </mapper>

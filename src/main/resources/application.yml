@@ -31,7 +31,12 @@ mybatis:
   type-aliases-package: com.vueserver.manager.entity
 logging:
   com.vueserver.manager.dao: info
-
+#pagehelper 分页
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countsql
 
 
 

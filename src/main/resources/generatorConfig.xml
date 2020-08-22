@@ -36,8 +36,10 @@
 
         <!-- jdbc连接-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.199.167:3306/vue_manager?serverTimezone=UTC" userId="root"
-                        password="root"/>
+                        connectionURL="jdbc:mysql://192.168.31.128:3306/vue_manager?serverTimezone=UTC" userId="root"
+                        password="root">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
 
         <!-- 类型转换 -->
         <javaTypeResolver>
@@ -77,13 +79,13 @@
         <!--table标签下的设置属性useActualColumnNames用于指定生成实体类时是否使用实际的列名作为实体类的属性名，取值true或false。
 　　        true：MyBatis Generator会使用数据库中实际的字段名字作为生成的实体类的属性名。
 　　        false：这是默认值。如果设置为false,则MyBatis Generator会将数据库中实际的字段名字转换为Camel Case风格作为生成的实体类的属性名。-->
-        <table tableName="t_user"  domainObjectName="User"
+        <table tableName="article"  domainObjectName="Article"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"
                enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true">
-            <property name="useActualColumnNames" value="false"/>
+            <property name="useActualColumnNames" value="true"/>
         </table>
     </context>
 </generatorConfiguration>
