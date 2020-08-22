@@ -49,5 +49,13 @@
       and title = #{title}
     </if>
   </select>
+  <insert id="createArticle" parameterType="com.vueserver.manager.param.ArticleParam">
+    insert into article (title, author,
+      createDate, readings, `status`,
+      content)
+    values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP}, #{readings,jdbcType=INTEGER}, #{status,jdbcType=BIT},
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
 
 </mapper>
