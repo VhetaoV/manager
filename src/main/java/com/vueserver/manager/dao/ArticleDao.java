@@ -15,4 +15,6 @@ public interface ArticleDao {
     List<Article> selectAll();
 
     int updateByPrimaryKey(Article record);
+
+    List<Article> selectByPage(String title);
 }

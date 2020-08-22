@@ -4,5 +4,5 @@ import com.github.pagehelper.PageInfo;
 
 public interface ArticleService {
 
-    PageInfo queryByPage(Integer startPage, Integer pageSize);
+    PageInfo queryByPage(Integer startPage, Integer pageSize, String title);
 }

@@ -34,8 +34,9 @@ public class ArticleController {
     @RequestMapping(value = "/queryPage",method = RequestMethod.GET)
     @ResponseBody
     public Result queryPage(@RequestParam(value = "page", required = true, defaultValue = "1") Integer startPage,
-                            @RequestParam(value = "limit", required = true, defaultValue = "10") Integer pageSize){
-        PageInfo pageInfo = articleService.queryByPage(startPage,pageSize);
+                            @RequestParam(value = "limit", required = true, defaultValue = "10") Integer pageSize,
+                            @RequestParam(value = "title", required = false) String title){
+        PageInfo pageInfo = articleService.queryByPage(startPage,pageSize,title);
         PageData pageData = new PageData(pageInfo.getList(),pageInfo.getTotal());
         return Result.OK(pageData);
     }

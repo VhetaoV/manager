@@ -24,9 +24,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Resource
     private ArticleDao articleDao;
 
-    public PageInfo queryByPage(Integer startPage, Integer pageSize){
+    public PageInfo queryByPage(Integer startPage, Integer pageSize, String title){
         PageHelper.startPage(startPage,pageSize);
-        List<Article> articleList = articleDao.selectAll();
+        List<Article> articleList = articleDao.selectByPage(title);
         PageInfo<Article> pageInfo = PageInfo.of(articleList);
         return pageInfo;
     }

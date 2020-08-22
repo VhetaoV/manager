@@ -30,7 +30,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.vueserver.manager.entity
 logging:
-  com.vueserver.manager.dao: info
+  com.vueserver.manager.dao: debug
 #pagehelper 分页
 pagehelper:
   helper-dialect: mysql
