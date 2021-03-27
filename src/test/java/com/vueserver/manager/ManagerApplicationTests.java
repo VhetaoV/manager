@@ -32,7 +32,7 @@ class ManagerApplicationTests {
     @Test
     public void testSave(){
         User user = new User();
-        user.setId(7);
+//        user.setId(7);
         user.setUserName("admin1");
         user.setUserPassword("admin1");
         userService.save(user);

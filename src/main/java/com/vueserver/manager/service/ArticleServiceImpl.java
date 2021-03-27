@@ -49,20 +49,21 @@ public class ArticleServiceImpl implements ArticleService {
      * 注意： 并不是新事务把等着老事务把update方法的所有code都执行完才开始执行新事物的update方法<br/>
      * 因为只有执行到userMapper.update(userParam)才开启事务, 此时才会挂起老的事务
      */
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.NESTED)
     @Override
     public Integer update(User userParam) {
         log.info("开始执行 update {}, {}", userParam.getId(), userParam.getUserName());
+        userParam.setId(7);
         userParam.setUserName("coffee");
         int result = userDao.updateByPrimaryKey(userParam);
         try {
             log.info("update 完成---数据库中的值为 {} 开始 sleep");
             Thread.sleep(1000 * 10);
             log.info("sleep结束");
-//            throw new RuntimeException(); // 回滚
+            throw new RuntimeException(); // 回滚
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return result;
+        return 1;
     }
 }

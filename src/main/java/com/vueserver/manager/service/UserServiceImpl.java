@@ -44,15 +44,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public void save(User userParam) {
         log.info("开始执行 save {}, {}", userParam.getId(), userParam.getUserName());
+        userDao.insert(userParam);
         try {
             log.info("save 完成---数据库中的值为 {} 开始 sleep", userParam.getUserName());
             // if ("15210712347".equals(userParam.getPhone())) {
             // throw new RuntimeException();
             // }
             Thread.sleep(1000);
-            userDao.insert(userParam);
             this.update(userParam);
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -66,13 +66,14 @@ public class UserServiceImpl implements UserService{
     @Override
     public Integer update(User userParam) {
         log.info("开始执行 update {}, {}", userParam.getId(), userParam.getUserName());
+        userParam.setId(7);
         userParam.setUserName("coffee");
         int result = userDao.updateByPrimaryKey(userParam);
         try {
             log.info("update 完成---数据库中的值为 {} 开始 sleep");
             Thread.sleep(1000 * 10);
             log.info("sleep结束");
-//            throw new RuntimeException(); // 回滚
+            throw new RuntimeException(); // 回滚
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
