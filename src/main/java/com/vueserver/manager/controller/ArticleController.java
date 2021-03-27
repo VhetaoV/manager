@@ -8,6 +8,7 @@ import com.vueserver.manager.param.ArticleParam;
 import com.vueserver.manager.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -23,6 +24,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequestMapping("/article")
+@EnableTransactionManagement
 public class ArticleController {
 
 

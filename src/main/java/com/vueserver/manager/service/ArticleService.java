@@ -1,6 +1,7 @@
 package com.vueserver.manager.service;
 
 import com.github.pagehelper.PageInfo;
+import com.vueserver.manager.entity.User;
 import com.vueserver.manager.param.ArticleParam;
 
 public interface ArticleService {
@@ -9,4 +10,6 @@ public interface ArticleService {
 
 
     int createArticle(ArticleParam articleParam);
+
+    Integer update(User userParam);
 }
