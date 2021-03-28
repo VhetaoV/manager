@@ -9,6 +9,7 @@ import com.vueserver.manager.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,12 +26,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/article")
 @EnableTransactionManagement
-public class ArticleController {
+public class ArticleController implements ArticleControllerInter{
 
 
     @Resource
     private ArticleService articleService;
-
+    @Transactional
     @RequestMapping(value = "/queryPage",method = RequestMethod.GET)
     @ResponseBody
     public Result queryPage(@RequestParam(value = "page", required = true, defaultValue = "1") Integer startPage,
